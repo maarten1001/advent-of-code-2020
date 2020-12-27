@@ -4,7 +4,6 @@ entries = f.read()
 f.close()
 
 entries = entries.split("\n\n")
-print(entries)
 
 total = 0
 for x in entries:
