@@ -1,5 +1,5 @@
 # get the input file
-f = open("test2.txt")
+f = open("test1.txt")
 numbers = f.read().splitlines()
 f.close()
 
