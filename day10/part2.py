@@ -1,32 +1,22 @@
 # get the input file
-f = open("test1.txt")
-numbers = f.read().splitlines()
+f = open("input.txt")
+adapters = f.read().splitlines()
 f.close()
 
-numbers = [int(x) for x in numbers]
-numbers.sort()
-numbers.insert(0, 0)  # add the outlet
-numbers.append(numbers[-1] + 3)  # add the device, which is 3 higher than the highest-rated adapter
+adapters = [int(x) for x in adapters]
+adapters.sort()
+adapters.insert(0, 0)  # add the outlet
+adapters.append(adapters[-1] + 3)  # add the device, which is 3 higher than the highest-rated adapter
 
-print("(" + str(numbers[0]) + ")")
-for i in range(1, len(numbers) - 1):
-    print(numbers[i])
-print("(" + str(numbers[-1]) + ")")
+# count the number of arrangements from 0 to adapter n
+total = [0 if x != 0 else 1 for x in range(max(adapters) + 1)]
 
-
-def combination_count(start, end):
-    for i in range(start, end):
-        for j in range(i + 1, end):
-            print(numbers[i:j])
-
-
-combination_count(0, len(numbers))
-
-total = 1
-for i in range(len(numbers) - 2):
-    if numbers[i + 2] - numbers[i] <= 3:
-        print("We can choose to skip " + str(numbers[i + 1]) + ", multiplying our possible arrangements by 2")
-        total *= 2
+for ad in adapters:
+    # add the possible arrangements from the previous 3 adapters
+    for i in range(ad - 3, ad):
+        if i < 0:
+            continue
+        total[ad] += total[i]
 
 print()
-print("Total amount of arrangements is " + str(total))
+print("Total amount of arrangements is " + str(total[-1]))

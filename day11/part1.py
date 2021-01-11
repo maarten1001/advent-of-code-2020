@@ -14,9 +14,9 @@ for i in range(len(seats)):
 def print_seats(r):
     occupied = 0
     print("Round " + str(r) + ":")
-    for i in range(1, len(seats) - 1):
-        print(seats[i][1:-1])
-        occupied += seats[i].count("#")
+    for ii in range(1, len(seats) - 1):
+        print(seats[ii][1:-1])
+        occupied += seats[ii].count("#")
     print()
     print(str(occupied) + " seats are occupied")
     print()
